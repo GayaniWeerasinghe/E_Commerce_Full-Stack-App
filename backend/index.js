@@ -7,7 +7,7 @@ const Stripe = require('stripe')
 const app = express()
 // Allow requests from a specific origin
 app.use(cors({
-  origin: 'https://e-commerce-full-stack-app-g1ln-frontend.vercel.app',
+  origin: 'https://e-commerce-full-stack-app-frontend.vercel.app/',
 }));
 app.use(express.json({limit : '10mb'}))
 
