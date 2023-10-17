@@ -22,7 +22,7 @@ function App() {
       dispatch(setDataProduct(resData));
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle the error, e.g., show an error message to the user.
+      console.log('Response:', await res.text());
     }
   })();
 }, []);
