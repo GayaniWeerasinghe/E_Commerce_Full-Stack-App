@@ -5,10 +5,7 @@ const dotenv = require("dotenv").config();
 const Stripe = require('stripe')
 
 const app = express()
-// Allow requests from a specific origin
-app.use(cors({
-  origin: 'https://e-commerce-full-stack-app-frontend.vercel.app',
-}));
+app.use(cors());
 app.use(express.json({limit : '10mb'}))
 
 const PORT = process.env.PORT || 8080
