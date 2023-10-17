@@ -12,13 +12,20 @@ function App() {
   const productData = useSelector((state)=>state.product)
 
   useEffect(() => {
-    (async()=>{
-      const res = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/products`)
-      const resData = await res.json()
-      dispatch(setDataProduct(resData))
-
-    })()
-  }, [])
+  (async () => {
+    try {
+      const res = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/products`);
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const resData = await res.json();
+      dispatch(setDataProduct(resData));
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle the error, e.g., show an error message to the user.
+    }
+  })();
+}, []);
 
   return (
     <>
