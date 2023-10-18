@@ -15,32 +15,44 @@ const Menu = () => {
   const dispatch = useDispatch()
 
   const handleAddCart = (e) => {
-    dispatch(addCartItem(productDisplay))
+    if(productDisplay){
+      dispatch(addCartItem(productDisplay))
+    }
   }
 
   const handleBuy = () => {
-    dispatch(addCartItem(productDisplay))
-    navigate('/cart')
+    if(productDisplay){
+      dispatch(addCartItem(productDisplay))
+      navigate('/cart')
+    } 
   }
 
   return (
     <div className='p-2 md:p-4'>
        <div className='w-full max-w-2xl bg-white m-auto md:flex'>
+         {productDisplay && (
           <div className='overflow-hidden max-w-sm'>
               <img src={productDisplay.image} className='hover:scale-105 transition-all'/>
           </div>
+          )}
           <div className='flex flex-col gap-1 p-4 mx-8'>
+            {productDisplay && (
+            <>
                <h3 className='font-semibold text-slate-600 capitalize md:text-4xl'>{productDisplay.name}</h3>
                 <p className='text-slate-500 font-medium text-xl'>{productDisplay.category}</p>
                 <p className='text-slate-700 font-bold md:text-2xl'><span className='text-red-500'>LKR </span><span>{productDisplay.price}</span>.00</p>
-                <div className='flex gap-4'>
+                 </>
+          )}
+            <div className='flex gap-4'>
                      <button className='min-w-[100px] bg-yellow-500 hover:bg-yellow-600 py-1 my-1 mt-1 w-full rounded font-medium' onClick={handleBuy}>Buy</button>
                      <button className='min-w-[100px] bg-yellow-500 hover:bg-yellow-600 py-1 my-1 mt-1 w-full rounded font-medium' onClick={handleAddCart}>Add to Cart</button>
                 </div>
+            {productDisplay && (
                 <div className=''>
                     <p className='text-slate-500 font-medium'>Description : </p>
                     <p>{productDisplay.description}</p>
                 </div>
+               )}
           </div>
        </div>
 
